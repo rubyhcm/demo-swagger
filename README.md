@@ -30,15 +30,17 @@ info:
 paths:
   "/api/v1/pets":
     post:
-      summary: Creates a pet
+      summary: create pet
       tags:
-      - Pets
+        - Pets
       parameters: []
       responses:
-        '201':
+        "201":
           description: pet created
-        '422':
+        "422":
           description: invalid request
+        "200":
+          description: successful
       requestBody:
         content:
           application/json:
@@ -52,8 +54,8 @@ paths:
                 status:
                   type: string
               required:
-              - name
-              - status
+                - name
+                - status
           application/xml:
             schema:
               type: object
@@ -65,59 +67,82 @@ paths:
                 status:
                   type: string
               required:
-              - name
-              - status
+                - name
+                - status
+    get:
+      summary: list pets
+      responses:
+        "200":
+          description: successful
   "/api/v1/pets/{id}":
     get:
-      summary: Retrieves a pet
+      summary: show pet
       tags:
-      - Pets
+        - Pets
       parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: successful
+        "404":
+          description: pet not found
+    parameters:
       - name: id
         in: path
+        description: id
         required: true
         schema:
           type: string
+    patch:
+      summary: update pet
       responses:
-        '200':
-          description: name found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  photo_url:
-                    type: string
-                  status:
-                    type: string
-                required:
-                - id
-                - name
-                - status
-            application/xml:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  photo_url:
-                    type: string
-                  status:
-                    type: string
-                required:
-                - id
-                - name
-                - status
-servers:
-- url: http://{defaultHost}
-  variables:
-    defaultHost:
-      default: localhost:3000
+        "200":
+          description: successful
 
+    put:
+      summary: update pet
+      tags:
+        - Pets
+      parameters:
+        - name: id
+          in: path
+          description: ID of the pet to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pet:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    status:
+                      type: string
+                  required:
+                    - name
+                    - status
+      responses:
+        "200":
+          description: successful
+
+    delete:
+      summary: delete pet
+      responses:
+        "200":
+          description: successful
+servers:
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000
 ```
