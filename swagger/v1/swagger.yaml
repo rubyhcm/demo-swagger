@@ -90,8 +90,6 @@ paths:
                 - id
                 - name
                 - status
-        '404':
-          description: pet not found
 servers:
 - url: http://{defaultHost}
   variables:
