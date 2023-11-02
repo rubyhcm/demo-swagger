@@ -73,11 +73,38 @@ paths:
         required: true
         schema:
           type: string
-    patch:
-      summary: update pet
+
+    patch: # Sử dụng phương thức PATCH thay thế PUT
+      summary: partially update pet
+      tags:
+        - Pets
+      parameters:
+        - name: id
+          in: path
+          description: ID of the pet to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pet:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    status:
+                      type: string
+                  required:
+                    - name
+                    - status
       responses:
         "200":
-          description: successful
+          description: successfull
 
     put:
       summary: update pet
