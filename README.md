@@ -1,4 +1,4 @@
-###Follow these step:
+### Follow these step:
 
 #### Add to Gemfile
 
