@@ -173,10 +173,6 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    rswag (2.11.0)
-      rswag-api (= 2.11.0)
-      rswag-specs (= 2.11.0)
-      rswag-ui (= 2.11.0)
     rswag-api (2.11.0)
       railties (>= 3.1, < 7.2)
     rswag-specs (2.11.0)
@@ -208,7 +204,9 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.8)
   rspec-rails
-  rswag
+  rswag-api
+  rswag-specs
+  rswag-ui
   spring
   sqlite3 (~> 1.4)
   tzinfo-data
