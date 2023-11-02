@@ -8,6 +8,7 @@ gem 'rswag'
 #### Run
 
 rails g rspec:install
+
 rails g rswag:install
 
 #### Run to generate the Swagger JSON file(s)
