@@ -3,8 +3,7 @@ class Api::V1::PetsController < ApplicationController
 
   #GET /api/v1/pets
   def index
-    @pets = Pet.all
-    render json: @pets
+    render json: Pet.all
   end
 
   # GET /api/v1/pets/1
@@ -14,11 +13,11 @@ class Api::V1::PetsController < ApplicationController
 
   # POST /api/v1/pets
   def create
-    @pet = Pet.new(pet_params)
-    if @pet.save
-      render json: @pet.to_json(only: [:id, :name, :status, :photo_url]), status: :created
+    pet = Pet.new(pet_params)
+    if pet.save
+      render json: pet.to_json(only: [:id, :name, :status, :photo_url]), status: :created
     else
-      render json: @pet.errors, status: :unprocessable_entity
+      render json: pet.errors, status: :unprocessable_entity
     end
   end
 
